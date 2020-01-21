@@ -1,0 +1,10 @@
+[package]
+name = "pc4d-rust"
+version = "0.1.0"
+authors = ["Daniel Mikusa <dan@mikusa.com>"]
+edition = "2018"
+
+[dependencies]
+sodiumoxide = "0.2.5"
+hex = "0.4.0"
+base64 = "0.11.0"
