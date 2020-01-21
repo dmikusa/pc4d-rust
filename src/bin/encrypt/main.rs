@@ -1,5 +1,5 @@
-use std::env;
 use sodiumoxide::crypto::secretbox;
+use std::env;
 
 fn main() {
     if env::args().count() != 2 {
@@ -18,19 +18,22 @@ fn main() {
 
     // get message
     let message = env::args().nth(1).unwrap_or_default();
-    
     // encrypt
     let ciphertext = secretbox::seal(message.as_bytes(), &nonce, &key);
 
     // combine the nonce & cipher text
-    let mut secretbox:Vec<u8> = vec![];
-    secretbox.extend(nonce.as_ref());
-    secretbox.extend(ciphertext);
+    let mut secret: Vec<u8> = vec![];
+    secret.extend(nonce.as_ref());
+    secret.extend(ciphertext);
 
     println!("Nonce: {}", hex::encode(&nonce));
     println!("Key: {}", hex::encode(&key));
-    println!("Box: {}", base64::encode(&secretbox));
+    println!("Box: {}", base64::encode(&secret));
     println!();
-    println!("Decrypt with: debug/target/decrypt {} {}", hex::encode(&key), base64::encode(&secretbox));
+    println!(
+        "Decrypt with: target/debug/decrypt {} {}",
+        hex::encode(&key),
+        base64::encode(&secret)
+    );
     println!();
 }
