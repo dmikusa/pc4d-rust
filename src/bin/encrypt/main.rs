@@ -18,6 +18,7 @@ fn main() {
 
     // get message
     let message = env::args().nth(1).unwrap_or_default();
+
     // encrypt
     let ciphertext = secretbox::seal(message.as_bytes(), &nonce, &key);
 
