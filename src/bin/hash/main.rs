@@ -1,5 +1,6 @@
-use digest::{ExtendableOutput, Input};
+use digest::{ExtendableOutput, Update, XofReader};
 use sha3::Shake256;
+use std::default::Default;
 use std::env;
 
 fn main() {
@@ -14,8 +15,10 @@ fn main() {
 
     // Perform Shake 256 Hash and get 64-bits of output
     let mut hasher = Shake256::default();
-    hasher.input(message);
-    let hash = hasher.vec_result(64);
+    hasher.update(message.as_bytes());
+
+    // read hash digest
+    let hash = hasher.finalize_xof().read_boxed(64);
 
     println!("Hash: {}", hex::encode(hash));
 }

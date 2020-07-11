@@ -5,8 +5,8 @@ authors = ["Daniel Mikusa <dan@mikusa.com>"]
 edition = "2018"
 
 [dependencies]
-sodiumoxide = "0.2.5"
-hex = "0.4.0"
-base64 = "0.11.0"
-sha3 = "0.8.2"
-digest = "0.8.1"
+sodiumoxide = "0.2"
+hex = "0.4"
+base64 = "0.12"
+sha3 = "0.9"
+digest = "0.9"
